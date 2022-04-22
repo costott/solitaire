@@ -11,6 +11,7 @@ CARD_RAD = 12
 CARD_X_GAP = 25
 
 BACK_CARD_BORDER_COLOUR = (18, 98, 24)
+BACK_CARD_COLOUR = (7, 41, 17)
 
 INFO_HEIGHT = 75
 EXIT_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH//3)

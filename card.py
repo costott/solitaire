@@ -94,9 +94,11 @@ class Card(pygame.sprite.Sprite):
         for row in game.card_rows:
             if not row.rect.collidepoint(mouse_pos): continue
 
-            if len(row.cards) == 0:
+            if len(row.cards) == 0 and self.type == game.type_order[-1]:
                 self.switch_row(current_row, row)
                 return True
+            elif len(row.cards) == 0:
+                return False
                 
             wants_index = game.type_order.index(row.cards[len(row.cards)-1].type) - 1
             wants_suit = ["hearts", "diamonds"] if row.cards[len(row.cards)-1].suit in ["clubs", "spades"] else ["clubs", "spades"]

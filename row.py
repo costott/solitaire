@@ -32,7 +32,7 @@ class Row:
                 card_back = pygame.Rect((0,0), (settings.CARD_WIDTH, settings.CARD_HEIGHT))
                 card_back.center = pos
                 pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, card_back.inflate(5,6), border_radius=settings.CARD_RAD)
-                pygame.draw.rect(display_surface, 'black', card_back, border_radius=settings.CARD_RAD)
+                pygame.draw.rect(display_surface, settings.BACK_CARD_COLOUR, card_back, border_radius=settings.CARD_RAD)
     
     def update(self, game) -> None:
         """called once per frame"""

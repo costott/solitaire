@@ -21,7 +21,7 @@ class StockPile:
         """draws the stock pile and (active pile if there is one)"""
         if len(self.cards) > 0:
             pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, self.top_card.inflate(5,6), border_radius=settings.CARD_RAD)
-            pygame.draw.rect(display_surface, 'black', self.top_card, border_radius=settings.CARD_RAD)
+            pygame.draw.rect(display_surface, settings.BACK_CARD_COLOUR, self.top_card, border_radius=settings.CARD_RAD)
 
         for card in self.drawn_cards[len(self.drawn_cards)-2:len(self.drawn_cards)]:
             card.draw(display_surface, self.drawn_pos)
