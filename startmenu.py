@@ -18,7 +18,7 @@ class StartMenu:
         self.symbols_rect.center = (settings.WIDTH//2, self.title_rect.centery-(self.title_rect.height/2)-15)
 
         play_button = Button("PLAY", (200, 100), 40, (settings.WIDTH//2, settings.HEIGHT//2+50), self.exit_menu)
-        exit_button = Button("exit", (100, 50), 20, (settings.WIDTH//2, play_button.rect.centery+play_button.rect.height/2 + 50), self.close_game)
+        exit_button = Button("EXIT", (100, 50), 20, (settings.WIDTH//2, play_button.rect.centery+play_button.rect.height/2 + 50), self.close_game)
         self.buttons = [play_button, exit_button]
 
         self.bars = [pygame.Rect(0, 0, settings.WIDTH, 50), pygame.Rect(0, settings.HEIGHT-50, settings.WIDTH, 50)]
