@@ -33,7 +33,7 @@ class StartMenu:
         """called once per frame"""
         pygame.event.get()
 
-        self.screen.fill("#34A249")
+        self.screen.fill(settings.BACKGROUND_COLOUR)
         self.screen.blit(self.title, self.title_rect)
         self.screen.blit(self.symbols, self.symbols_rect)
 
@@ -53,7 +53,7 @@ class StartMenu:
         sys.exit()
 
 class Button:
-    unhover_colour = "#34A249"
+    unhover_colour = settings.BACKGROUND_COLOUR
     hover_colour = "#4dab5e"
 
     def __init__(self, text: float, size: tuple[float,float], text_size: int, center_pos: tuple[float,float], action):

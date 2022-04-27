@@ -70,7 +70,7 @@ class Game:
         """called once per frame"""
         pygame.event.get()
 
-        self.screen.fill('#34A249')
+        self.screen.fill(settings.BACKGROUND_COLOUR)
         pygame.draw.rect(self.screen, (35, 115, 51), (0,0,settings.CARD_WIDTH+settings.CARD_X_GAP,settings.HEIGHT))
         pygame.draw.rect(self.screen, (35, 115, 51), ((settings.CARD_WIDTH+settings.CARD_X_GAP)*8, 0, settings.CARD_WIDTH+settings.CARD_X_GAP, settings.HEIGHT))
 
