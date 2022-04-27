@@ -21,6 +21,8 @@ EXIT_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH//3)
 TIMER_FONT = pygame.font.Font("arial-unicode-ms.ttf", 20)
 MOVES_FONT = pygame.font.Font("arial-unicode-ms.ttf", 25)
 
+GAME_BUTTON_FONT = pygame.font.Font("arial-unicode-ms.ttf", 25)
+
 CARD_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH//3)
 ACE_PILE_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH - 10)
 

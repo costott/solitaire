@@ -1,6 +1,7 @@
 import pygame
 import random
 
+from game_buttons import GameButton
 from stock_pile import StockPile
 from startmenu import StartMenu
 from info_bar import InfoBar
@@ -13,6 +14,8 @@ class Game:
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT), pygame.NOFRAME)
         self.clock = pygame.time.Clock()
 
+        self.running = True
+
         self.type_order = ["ace"] + [str(i) for i in range(2,11)] + ["jack", "king", "queen"]
 
         self.stock_pile = self.make_cards()
@@ -23,6 +26,8 @@ class Game:
         self.stock_pile = StockPile(self.stock_pile)
 
         self.info_bar = InfoBar(self.clock)
+        new_game = GameButton("★ new", (settings.WIDTH//2, settings.HEIGHT-50), self.new_game)
+        self.game_buttons = [new_game]
 
         self.card_being_dragged = None
 
@@ -60,9 +65,13 @@ class Game:
         
         return ace_rows
     
+    def new_game(self) -> None:
+        """starts new game by stopping current one"""
+        self.running = False
+    
     def run(self) -> None:
         """runs the game"""
-        while True:
+        while self.running:
             self.clock.tick(settings.FPS)
             self.update()
     
@@ -76,6 +85,10 @@ class Game:
 
         self.info_bar.draw(self.screen, self.moves)
         self.info_bar.update()
+
+        for button in self.game_buttons:
+            button.draw(self.screen)
+            button.update()
 
         for row in self.card_rows:
             row.draw(self.screen)
@@ -96,8 +109,9 @@ def main():
     menu = StartMenu(caps=True)
     menu.run()
 
-    game = Game()
-    game.run()
+    while True:
+        game = Game()
+        game.run()
 
 if __name__ == "__main__":
     main()
