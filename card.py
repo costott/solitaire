@@ -27,7 +27,7 @@ class Card(pygame.sprite.Sprite):
         if not self.is_being_dragged: 
             self.rect.center = center_pos
         pygame.draw.rect(display_surface, self.colour, self.rect.inflate(5,6), border_radius=settings.CARD_RAD)
-        pygame.draw.rect(display_surface, 'black', self.rect, border_radius=settings.CARD_RAD)
+        pygame.draw.rect(display_surface, settings.CARD_BACK_COLOUR, self.rect, border_radius=settings.CARD_RAD)
 
         disp_type_rect = self.disp_type.get_rect(topleft = (self.rect.topleft[0]+5, self.rect.topleft[1]+5))
         display_surface.blit(self.disp_type, disp_type_rect)
@@ -37,7 +37,7 @@ class Card(pygame.sprite.Sprite):
     
     def draw_tether(self, display_surface: pygame.Surface) -> None:
         pygame.draw.rect(display_surface, self.colour, self.rect.inflate(5,6), border_radius=settings.CARD_RAD)
-        pygame.draw.rect(display_surface, 'black', self.rect, border_radius=settings.CARD_RAD)
+        pygame.draw.rect(display_surface, settings.CARD_BACK_COLOUR, self.rect, border_radius=settings.CARD_RAD)
 
         disp_type_rect = self.disp_type.get_rect(topleft = (self.rect.topleft[0]+5, self.rect.topleft[1]+5))
         display_surface.blit(self.disp_type, disp_type_rect)
