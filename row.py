@@ -24,8 +24,9 @@ class Row:
     
     def draw(self, display_surface: pygame.Surface,) -> None:
         """draws row to display surface"""
+        card_space = 36 if len(self.cards) <= 10 else 36-2*(len(self.cards)-10)
         for i, card in enumerate(self.cards):
-            pos = (self.top_card_center_pos[0], self.top_card_center_pos[1]+i*(36))
+            pos = (self.top_card_center_pos[0], self.top_card_center_pos[1]+i*card_space)
             if card.draggable:
                 card.draw(display_surface, pos)
             else:
