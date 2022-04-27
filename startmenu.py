@@ -56,7 +56,7 @@ class Button:
     unhover_colour = settings.BACKGROUND_COLOUR
     hover_colour = "#4dab5e"
 
-    def __init__(self, text: float, size: tuple[float,float], text_size: int, center_pos: tuple[float,float], action):
+    def __init__(self, text: str, size: tuple[float,float], text_size: int, center_pos: tuple[float,float], action):
         """size: (width, height)"""
         self.rect = pygame.Rect(0,0,size[0],size[1])
         self.rect.center = center_pos
