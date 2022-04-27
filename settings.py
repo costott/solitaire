@@ -22,6 +22,8 @@ MOVES_FONT = pygame.font.Font("arial-unicode-ms.ttf", 25)
 CARD_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH//3)
 ACE_PILE_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH - 10)
 
+TITLE_FONT = pygame.font.Font("arial-unicode-ms-bold.ttf", 75)
+
 DISP_TYPE = {
     "queen":"Q",
     "king":"K",

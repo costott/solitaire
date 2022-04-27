@@ -2,6 +2,7 @@ import pygame
 import random
 
 from stock_pile import StockPile
+from startmenu import StartMenu
 from info_bar import InfoBar
 from row import Row, AceRow
 from card import Card
@@ -10,7 +11,6 @@ import settings
 class Game:
     def __init__(self):
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT), pygame.NOFRAME)
-        pygame.display.set_caption("solitaire")
         self.clock = pygame.time.Clock()
 
         self.type_order = ["ace"] + [str(i) for i in range(2,11)] + ["jack", "king", "queen"]
@@ -93,6 +93,9 @@ class Game:
         pygame.display.update()
 
 def main():
+    menu = StartMenu(caps=True)
+    menu.run()
+
     game = Game()
     game.run()
 
