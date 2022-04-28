@@ -88,7 +88,7 @@ class Game:
 
         for button in self.game_buttons:
             button.draw(self.screen)
-            button.update()
+            if self.card_being_dragged is None: button.update()
 
         for row in self.card_rows:
             row.draw(self.screen)
