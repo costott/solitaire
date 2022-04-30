@@ -27,6 +27,7 @@ CARD_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH//3)
 ACE_PILE_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH - 10)
 
 TITLE_FONT = pygame.font.Font("arial-unicode-ms-bold.ttf", 75)
+ORDER_MENU_TITLE_FONT = pygame.font.Font("arial-unicode-ms.ttf", 20)
 
 DISP_TYPE = {
     "queen":"Q",

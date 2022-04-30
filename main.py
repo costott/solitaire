@@ -3,6 +3,7 @@ import random
 
 from game_buttons import GameButton
 from stock_pile import StockPile
+from order_menu import OrderMenu
 from startmenu import StartMenu
 from info_bar import InfoBar
 from row import Row, AceRow
@@ -10,13 +11,13 @@ from card import Card
 import settings
 
 class Game:
-    def __init__(self):
+    def __init__(self, type_order: list[str] = ["ace"] + [str(i) for i in range(2,11)] + ["jack", "king", "queen"]):
         self.screen = pygame.display.set_mode((settings.WIDTH, settings.HEIGHT), pygame.NOFRAME)
         self.clock = pygame.time.Clock()
 
         self.running = True
 
-        self.type_order = ["ace"] + [str(i) for i in range(2,11)] + ["jack", "king", "queen"]
+        self.type_order = type_order
 
         self.stock_pile = self.make_cards()
         random.shuffle(self.stock_pile)
@@ -106,11 +107,14 @@ class Game:
         pygame.display.update()
 
 def main():
+    order_menu = OrderMenu()
     menu = StartMenu(caps=True)
     menu.run()
 
+    type_order = order_menu.run()
+
     while True:
-        game = Game()
+        game = Game(type_order)
         game.run()
 
 if __name__ == "__main__":
