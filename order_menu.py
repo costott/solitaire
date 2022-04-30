@@ -19,7 +19,7 @@ class OrderMenu:
         self.cards = [MenuCard(type) for type in self.type_order]
         self.card_being_dragged = None
 
-        self.confirm_button = Button("PLAY", (200, 100), 40, (settings.WIDTH//2, settings.HEIGHT//2+175), self.exit_menu)
+        self.confirm_button = Button("CONFIRM", (250, 100), 40, (settings.WIDTH//2, settings.HEIGHT//2+175), self.exit_menu)
     
     def run(self) -> None:
         """runs the order menu"""
