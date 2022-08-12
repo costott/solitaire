@@ -55,11 +55,16 @@ class StartMenu:
 class Button:
     unhover_colour = settings.BACKGROUND_COLOUR
     hover_colour = "#4dab5e"
+    hover_speed = 2
 
     def __init__(self, text: str, size: tuple[float,float], text_size: int, center_pos: tuple[float,float], action):
         """size: (width, height)"""
         self.rect = pygame.Rect(0,0,size[0],size[1])
         self.rect.center = center_pos
+
+        self.size = pygame.math.Vector2(size[0], size[1])
+        self.unhover_size = self.size.copy()
+        self.hover_size = pygame.math.Vector2(size[0]+20, size[1]+20)
 
         self.text = pygame.font.Font("arial-unicode-ms.ttf", text_size).render(text, True, 'white')
         self.text_rect = self.text.get_rect()
@@ -83,8 +88,18 @@ class Button:
         """checks if button is clicked"""
         if not self.rect.collidepoint(pygame.mouse.get_pos()):
             self.colour = self.unhover_colour
+            if self.size.x > self.unhover_size.x:
+                self.size.x -= self.hover_speed
+                self.size.y -= self.hover_speed
+                self.rect = pygame.Rect(0,0, self.size.x, self.size.y)
+                self.rect.center = self.text_rect.center
             return
        
         self.colour = self.hover_colour
+        if self.size.x < self.hover_size.x:
+            self.size.x += self.hover_speed
+            self.size.y += self.hover_speed
+            self.rect = pygame.Rect(0,0, self.size.x, self.size.y)
+            self.rect.center = self.text_rect.center
         if pygame.mouse.get_pressed()[0]:
            self.action()
