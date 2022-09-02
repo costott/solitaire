@@ -23,9 +23,9 @@ class StockPile:
             placeholder = pygame.Rect(0,0, settings.CARD_WIDTH, settings.CARD_HEIGHT)
             placeholder.center = self.center_pos
             placeholder.inflate(6,6)
-            pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, placeholder, border_radius=settings.CARD_RAD)
+            pygame.draw.rect(display_surface, settings.CARD_BORDER_COLOUR, placeholder, border_radius=settings.CARD_RAD)
         if len(self.cards) > 0:
-            pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, self.top_card.inflate(5,6), border_radius=settings.CARD_RAD)
+            pygame.draw.rect(display_surface, settings.CARD_BORDER_COLOUR, self.top_card.inflate(5,6), border_radius=settings.CARD_RAD)
             pygame.draw.rect(display_surface, settings.BACK_CARD_COLOUR, self.top_card, border_radius=settings.CARD_RAD)
 
         for card in self.drawn_cards[len(self.drawn_cards)-2:len(self.drawn_cards)]:

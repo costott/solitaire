@@ -32,7 +32,7 @@ class Row:
             else:
                 card_back = pygame.Rect((0,0), (settings.CARD_WIDTH, settings.CARD_HEIGHT))
                 card_back.center = pos
-                pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, card_back.inflate(5,6), border_radius=settings.CARD_RAD)
+                pygame.draw.rect(display_surface, settings.CARD_BORDER_COLOUR, card_back.inflate(5,6), border_radius=settings.CARD_RAD)
                 pygame.draw.rect(display_surface, settings.BACK_CARD_COLOUR, card_back, border_radius=settings.CARD_RAD)
     
     def update(self, game) -> None:
@@ -58,7 +58,7 @@ class AceRow:
         """draws top card in ace pile"""
         card_back = pygame.Rect((0,0), (settings.CARD_WIDTH, settings.CARD_HEIGHT))
         card_back.center = self.rect.center
-        pygame.draw.rect(display_surface, settings.BACK_CARD_BORDER_COLOUR, card_back.inflate(6,6), border_radius=settings.CARD_RAD)
+        pygame.draw.rect(display_surface, settings.CARD_BORDER_COLOUR, card_back.inflate(6,6), border_radius=settings.CARD_RAD)
         pygame.draw.rect(display_surface, '#34A249', card_back, border_radius=settings.CARD_RAD)
         display_surface.blit(self.disp_suit, self.disp_suit_rect)
 

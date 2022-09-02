@@ -10,7 +10,7 @@ class Card(pygame.sprite.Sprite):
 
         self.rect =  pygame.Rect((0,0), (settings.CARD_WIDTH, settings.CARD_HEIGHT))
 
-        self.colour = "red" if self.suit in ["hearts", "diamonds"] else "white"
+        self.colour = settings.RED_COLOUR if self.suit in ["hearts", "diamonds"] else settings.BLACK_COLOUR
         self.type_text = settings.DISP_TYPE[self.type] if not self.type.isnumeric() else self.type
         self.disp_type = settings.CARD_FONT.render(self.type_text, True, self.colour)
 
@@ -22,12 +22,12 @@ class Card(pygame.sprite.Sprite):
 
         self.tether = None # card attached to it
     
-    def draw(self, display_surface: pygame.Surface, center_pos: tuple[float, float]) -> None:
+    def draw(self, display_surface: pygame.Surface, center_pos: tuple[float, float], tethered: bool = False) -> None:
         """draws card onto surface"""
-        if not self.is_being_dragged: 
+        if not self.is_being_dragged and not tethered: 
             self.rect.center = center_pos
-        pygame.draw.rect(display_surface, self.colour, self.rect.inflate(5,6), border_radius=settings.CARD_RAD)
-        pygame.draw.rect(display_surface, settings.CARD_BACK_COLOUR, self.rect, border_radius=settings.CARD_RAD)
+        pygame.draw.rect(display_surface, settings.CARD_BORDER_COLOUR, self.rect.inflate(7,6), border_radius=settings.CARD_RAD)
+        pygame.draw.rect(display_surface, settings.CARD_BACK_COLOUR, self.rect.inflate(5,4), border_radius=settings.CARD_RAD)
 
         disp_type_rect = self.disp_type.get_rect(topleft = (self.rect.topleft[0]+5, self.rect.topleft[1]+5))
         display_surface.blit(self.disp_type, disp_type_rect)
@@ -36,14 +36,7 @@ class Card(pygame.sprite.Sprite):
         display_surface.blit(self.disp_suit, disp_suit_rect)
     
     def draw_tether(self, display_surface: pygame.Surface) -> None:
-        pygame.draw.rect(display_surface, self.colour, self.rect.inflate(5,6), border_radius=settings.CARD_RAD)
-        pygame.draw.rect(display_surface, settings.CARD_BACK_COLOUR, self.rect, border_radius=settings.CARD_RAD)
-
-        disp_type_rect = self.disp_type.get_rect(topleft = (self.rect.topleft[0]+5, self.rect.topleft[1]+5))
-        display_surface.blit(self.disp_type, disp_type_rect)
-
-        disp_suit_rect = self.disp_suit.get_rect(topright = (self.rect.topright[0]-5, self.rect.topright[1]+5))
-        display_surface.blit(self.disp_suit, disp_suit_rect)
+        self.draw(display_surface, (0,0), True)
 
         if self.tether != None:
             self.tether.draw_tether(display_surface)
