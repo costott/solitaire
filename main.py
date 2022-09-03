@@ -34,6 +34,9 @@ class Game:
 
         self.moves = 0
     
+        self.make_won_screen()
+        self.won = False
+    
     def make_cards(self) -> list[Card]:
         """returns all 52 cards"""
         cards = []
@@ -70,6 +73,22 @@ class Game:
         """starts new game by stopping current one"""
         self.running = False
     
+    def make_won_screen(self) -> None:
+        """makes screen to be displayed when a game is won"""
+        self.won_screen = pygame.Surface((settings.WIDTH, settings.HEIGHT), pygame.SRCALPHA)
+        self.won_screen.fill(settings.WON_SCREEN_COLOUR)
+        self.won_screen.set_alpha(settings.WON_SCREEN_ALPHA)
+
+        self.won_text_rect = settings.WON_TEXT.get_rect(center = (settings.WIDTH/2, settings.HEIGHT/2))
+    
+    def check_won(self) -> None:
+        """checks if the game is won"""
+        if len(self.stock_pile.cards) == 0 and len(self.stock_pile.drawn_cards) == 0:
+            won = True
+            for row in self.card_rows:
+                if len(row.cards) > len(row.visible_cards): won = False
+            self.won = won
+    
     def run(self) -> None:
         """runs the game"""
         while self.running:
@@ -81,15 +100,24 @@ class Game:
         pygame.event.get()
 
         self.screen.fill(settings.BACKGROUND_COLOUR)
-        pygame.draw.rect(self.screen, (35, 115, 51), (0,0,settings.CARD_WIDTH+settings.CARD_X_GAP,settings.HEIGHT))
-        pygame.draw.rect(self.screen, (35, 115, 51), ((settings.CARD_WIDTH+settings.CARD_X_GAP)*8, 0, settings.CARD_WIDTH+settings.CARD_X_GAP, settings.HEIGHT))
+
+        if self.won:
+            self.screen.blit(self.won_screen, (0,0))
+            self.screen.blit(settings.WON_TEXT, self.won_text_rect)
+        else:
+            pygame.draw.rect(self.screen, (35, 115, 51), (0,0,settings.CARD_WIDTH+settings.CARD_X_GAP,settings.HEIGHT))
+            pygame.draw.rect(self.screen, (35, 115, 51), ((settings.CARD_WIDTH+settings.CARD_X_GAP)*8, 0, settings.CARD_WIDTH+settings.CARD_X_GAP, settings.HEIGHT))
 
         self.info_bar.draw(self.screen, self.moves)
-        self.info_bar.update()
+        self.info_bar.update(self.won)
 
         for button in self.game_buttons:
             button.draw(self.screen)
             if self.card_being_dragged is None: button.update()
+        
+        if self.won:
+            pygame.display.update()
+            return
 
         for row in self.card_rows:
             row.draw(self.screen)
@@ -103,6 +131,8 @@ class Game:
         self.stock_pile.update(self)
 
         if self.card_being_dragged != None: self.card_being_dragged.draw_tether(self.screen)
+
+        self.check_won()
 
         pygame.display.update()
 

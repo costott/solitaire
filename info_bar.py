@@ -12,9 +12,11 @@ class InfoBar:
 
         self.exit_button = ExitButton((settings.WIDTH - 25, settings.INFO_HEIGHT/2))
     
-    def update(self) -> None:
+    def update(self, game_won: bool) -> None:
         """called once per frame"""
         self.exit_button.update()
+
+        if game_won: return
 
         fps = self.clock.get_fps()
         self.timer += 1/(fps if fps != 0 else 9999)

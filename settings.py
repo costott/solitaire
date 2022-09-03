@@ -31,6 +31,10 @@ ACE_PILE_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH - 10)
 TITLE_FONT = pygame.font.Font("arial-unicode-ms-bold.ttf", 75)
 ORDER_MENU_TITLE_FONT = pygame.font.Font("arial-unicode-ms.ttf", 20)
 
+WON_SCREEN_COLOUR = "green"
+WON_SCREEN_ALPHA = 100
+WON_TEXT = pygame.font.Font(None, 65).render("YOU WON!", True, "white")
+
 DISP_TYPE = {
     "queen":"Q",
     "king":"K",
