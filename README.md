@@ -28,7 +28,7 @@ Once all the cards in the pile you draw from have been placed, and all cards fac
 
 Now you can play another game or exit.
 
-Make sure to take notice of the move number and time to see if you can do better next time.
+Make sure to take notice of the move number and time to see if you do better next time.
 
 ## Installation
 ### Step 1 - Download the ZIP file
