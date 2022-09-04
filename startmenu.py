@@ -10,12 +10,13 @@ class StartMenu:
         self.running = True
 
         self.title = settings.TITLE_FONT.render("solitaire" if not caps else "SOLITAIRE", True, 'white')
-        self.title_rect = self.title.get_rect()
-        self.title_rect.center = (settings.WIDTH//2, 200)
+        self.title_rect = self.title.get_rect(center = (settings.WIDTH//2, 200))
 
         self.symbols = settings.TITLE_FONT.render("♡♣♠♢", True, 'white')
-        self.symbols_rect = self.symbols.get_rect()
-        self.symbols_rect.center = (settings.WIDTH//2, self.title_rect.centery-(self.title_rect.height/2)-15)
+        self.symbols_rect = self.symbols.get_rect(center = (settings.WIDTH//2, self.title_rect.centery-(self.title_rect.height/2)-15))
+
+        self.credits = settings.CREDIT_FONT.render("by costott", True, 'white')
+        self.credits_rect = self.credits.get_rect(midtop = (settings.WIDTH/2, self.title_rect.bottom - 10))
 
         play_button = Button("PLAY", (250, 125), 40, (settings.WIDTH//2, settings.HEIGHT//2+50), self.exit_menu)
         exit_button = Button("EXIT", (100, 50), 20, (settings.WIDTH//2, play_button.rect.centery+play_button.rect.height/2 + 50), self.close_game)
@@ -36,6 +37,7 @@ class StartMenu:
         self.screen.fill(settings.BACKGROUND_COLOUR)
         self.screen.blit(self.title, self.title_rect)
         self.screen.blit(self.symbols, self.symbols_rect)
+        self.screen.blit(self.credits, self.credits_rect)
 
         for button in self.buttons:
             button.draw(self.screen)

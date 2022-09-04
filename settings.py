@@ -30,6 +30,7 @@ ACE_PILE_FONT = pygame.font.Font("arial-unicode-ms.ttf", CARD_WIDTH - 10)
 
 TITLE_FONT = pygame.font.Font("arial-unicode-ms-bold.ttf", 75)
 ORDER_MENU_TITLE_FONT = pygame.font.Font("arial-unicode-ms.ttf", 20)
+CREDIT_FONT = pygame.font.Font(None, 20)
 
 WON_SCREEN_COLOUR = "green"
 WON_SCREEN_ALPHA = 100
